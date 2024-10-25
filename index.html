@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Student Expenses</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #f3f4f6;
+            font-family: sans-serif;
+            color: #333;
+        }
+
+        .chart-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #042444;
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid #555;
+        }
+
+        h1 {
+            text-align: left;
+            color: black;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        canvas {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My Expenses</h1>
+    <div class="chart-container">
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+
+        const gradientRed = ctx.createLinearGradient(0, 0, 0, 400);
+        gradientRed.addColorStop(0, 'rgba(255, 99, 132, 0.7');
+        gradientRed.addColorStop(1, 'rgba(255, 99, 132, 0.2)');
+
+        const gradientBlue = ctx.createLinearGradient(0, 0, 0, 400);
+        gradientBlue.addColorStop(0, 'rgba(54, 162, 235, 0.7');
+        gradientBlue.addColorStop(1, 'rgba(54, 162, 235, 0.2)');
+
+        const gradientYellow = ctx.createLinearGradient(0, 0, 0, 400);
+        gradientYellow.addColorStop(0, 'rgba(255, 206, 86, 0.7');
+        gradientYellow.addColorStop(1, 'rgba(255, 206, 86, 0.2)');
+
+        const gradientGreen = ctx.createLinearGradient(0, 0, 0, 400);
+        gradientGreen.addColorStop(0, 'rgba(75, 192, 192, 0.7');
+        gradientGreen.addColorStop(1, 'rgba(75, 192, 192, 0.2)');
+
+        const gradientPurple = ctx.createLinearGradient(0, 0, 0, 400);
+        gradientPurple.addColorStop(0, 'rgba(153, 102, 255, 0.7');
+        gradientPurple.addColorStop(1, 'rgba(153, 102, 255, 0.2)');
+
+        const gradientOrange = ctx.createLinearGradient(0, 0, 0, 400);
+        gradientOrange.addColorStop(0, 'rgba(255, 159, 64, 0.7');
+        gradientOrange.addColorStop(1, 'rgba(255, 159, 64, 0.2)');
+
+        const myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Tuition', 'Books', 'Housing', 'Food', 'Transportation', 'Misc'],
+                datasets: [{
+                    label: 'Expenses (₱)',
+                    data: [1200, 600, 1300, 1000, 200, 500],
+                    backgroundColor: [
+                        gradientRed,
+                        gradientBlue,
+                        gradientYellow,
+                        gradientGreen,
+                        gradientPurple,
+                        gradientOrange
+                    ],
+                    borderColor: '#ffffff',
+                    borderWidth: 2,
+                    borderRadius: 5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: '#ffffff',
+                            callback: function (value) {
+                                return '₱' + value;
+                            }
+                        },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                    },
+                    x: {
+                        ticks: { color: '#ffffff' },
+                        grid: { display: false }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true,
+                        labels: {
+                            color: '#ffffff'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
